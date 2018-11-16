@@ -50,16 +50,31 @@ endif()
 
 include_directories(
         Classes
+        Classes
+        Classes/AppDelegate
+        Classes/Game
+        Classes/Menu/Controller
+        Classes/Menu/View
         ${COCOS2DX_ROOT_PATH}/cocos/audio/include/
 )
 # add cross-platforms source files and header files 
 list(APPEND GAME_SOURCE
-     Classes/AppDelegate.cpp
-     Classes/HelloWorldScene.cpp
+        Classes/AppDelegate/AppDelegate.cpp
+        Classes/Game/GameViewController.cpp
+        Classes/Menu/Controller/MenuViewController.cpp
+        Classes/Menu/Controller/GameSceneViewController.cpp
+        Classes/Menu/View/MenuLabel.cpp
+        Classes/Menu/View/MenuLayer.cpp
+        Classes/Menu/View/GameLayer.cpp
      )
 list(APPEND GAME_HEADER
-     Classes/AppDelegate.h
-     Classes/HelloWorldScene.h
+        Classes/AppDelegate/AppDelegate.h
+        Classes/Game/GameViewController.hpp
+        Classes/Menu/Controller/MenuViewController.hpp
+        Classes/Menu/Controller/GameSceneViewController.h
+        Classes/Menu/View/MenuLabel.hpp
+        Classes/Menu/View/MenuLayer.hpp
+        Classes/Menu/View/GameLayer.h
      )
 
 if(ANDROID)
