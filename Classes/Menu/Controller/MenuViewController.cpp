@@ -46,5 +46,5 @@ void MenuViewController::menuCloseCallback(Ref* pSender) {
 }
 
 void MenuViewController::playCallback(Ref *pSender, MenuViewController::GameMode gameMode) {
-
+    Director::getInstance()->replaceScene(GameSceneViewController::createScene());
 }
