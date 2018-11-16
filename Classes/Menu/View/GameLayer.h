@@ -14,14 +14,15 @@ class GameSceneViewController;
 
 class GameLayer: public cocos2d::Layer {
 private:
-    GameSceneViewController *controller;
+    GameSceneViewController *scene;
     void setupUI();
     virtual bool init();
 public:
     cocos2d::Label* testLabel;
-    static GameLayer* createLayer(GameSceneViewController* controller);
+    static GameLayer* createLayer(GameSceneViewController* scene);
     GameLayer(){}
     ~GameLayer(){}
+
 
     CREATE_FUNC(GameLayer);
 };

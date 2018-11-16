@@ -6,9 +6,9 @@
 
 USING_NS_CC;
 
-GameLayer* GameLayer::createLayer(GameSceneViewController *controller) {
+GameLayer* GameLayer::createLayer(GameSceneViewController *scene) {
     GameLayer *layer = GameLayer::create();
-    layer->controller = controller;
+    layer->scene = scene;
 
     return layer;
 }
@@ -32,7 +32,7 @@ void GameLayer::setupUI() {
     auto closeItem = MenuItemImage::create(
             "CloseNormal.png",
             "CloseSelected.png",
-            CC_CALLBACK_1(GameSceneViewController::gameCloseCallback, controller));
+            CC_CALLBACK_1(GameSceneViewController::gameCloseCallback, scene));
 
     if (closeItem == nullptr ||
         closeItem->getContentSize().width <= 0 ||
@@ -53,5 +53,9 @@ bool GameLayer::init() {
 
     setupUI();
 
+
     return true;
 }
+
+
+

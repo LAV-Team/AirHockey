@@ -44,7 +44,7 @@ using namespace CocosDenshion;
 
 USING_NS_CC;
 
-#define FULL_SCREEN_MODE 1
+#define FULL_SCREEN_MODE 0
 #if (!FULL_SCREEN_MODE)
 #define FRAME_SIZE_NAME resolutionSizeNo1
 #endif

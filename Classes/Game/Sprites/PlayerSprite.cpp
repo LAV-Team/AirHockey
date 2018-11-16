@@ -28,11 +28,16 @@ Sprite* PlayerSprite::create(PlayerSide side) {
             break;
     }
     
-    
-    auto playerSize = Size(visibleSize.height / 5, visibleSize.height / 5);
+    auto radius = visibleSize.height / 15;
+    auto playerSize = Size(2 * radius, 2 * radius);
 
     player->setContentSize(playerSize);
     player->setPosition(position);
+    
+    auto physicsBody = PhysicsBody::createCircle(radius, PhysicsMaterial(0.1f, 1, 0));
+
+    physicsBody->setDynamic(false);
+    player->setPhysicsBody(physicsBody);
     
     
     return player;

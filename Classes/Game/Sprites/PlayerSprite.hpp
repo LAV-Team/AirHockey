@@ -17,7 +17,8 @@ private:
 
 public:
     enum PlayerSide {
-        left, right
+        left,
+        right
     };
     
     static cocos2d::Sprite* create(PlayerSide side);
