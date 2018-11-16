@@ -26,7 +26,7 @@ public:
     static MenuLayer* createLayer(MenuViewController* controller);
     MenuLayer();
     ~MenuLayer();
-    
+
     CREATE_FUNC(MenuLayer);
 };
 

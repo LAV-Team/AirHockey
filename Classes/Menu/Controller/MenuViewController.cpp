@@ -12,7 +12,7 @@ USING_NS_CC;
 
 MenuViewController::MenuViewController() {
     std::cout << "\nMenuViewController allocated" << std::endl;
-    
+
 }
 
 MenuViewController::~MenuViewController() {
@@ -27,20 +27,24 @@ bool MenuViewController::init() {
     if (!Scene::init()) {
         return false;
     }
-    
+
     menuLayer = MenuLayer::createLayer(this);
     addChild(menuLayer);
-    
+
     return true;
 }
 
 void MenuViewController::menuCloseCallback(Ref* pSender) {
     //Close the cocos2d-x game scene and quit the application
-    
+
     Director::getInstance()->end();
-    
+
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
     exit(0);
 #endif
-    
+
+}
+
+void MenuViewController::playCallback(Ref *pSender, MenuViewController::GameMode gameMode) {
+
 }
