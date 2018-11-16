@@ -12,8 +12,10 @@
 #include <stdio.h>
 #include "cocos2d.h"
 #include "MenuLayer.hpp"
+#include "GameSceneViewController.h"
 
 class MenuLayer;
+class GameSceneViewController;
 
 class MenuViewController: public cocos2d::Scene {
 private:
