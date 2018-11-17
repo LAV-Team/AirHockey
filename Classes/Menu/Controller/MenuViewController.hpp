@@ -12,19 +12,30 @@
 #include <stdio.h>
 #include "cocos2d.h"
 #include "MenuLayer.hpp"
+#include "GameSceneViewController.h"
 
 class MenuLayer;
+class GameSceneViewController;
 
 class MenuViewController: public cocos2d::Scene {
 private:
     MenuLayer* menuLayer;
 public:
+    typedef enum {
+        easy,
+        medium,
+        hard,
+        twoPlayers,
+        online
+    } GameMode;
+
     static cocos2d::Scene* createScene();
     MenuViewController();
-    void menuCloseCallback(cocos2d::Ref* pSender);
+    void menuCloseCallback(Ref* pSender);
+    void playCallback(Ref* pSender, GameMode gameMode);
     virtual ~MenuViewController();
     virtual bool init();
-    
+
     // implement the "static create()" method manually
     CREATE_FUNC(MenuViewController);
 };

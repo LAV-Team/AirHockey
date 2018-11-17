@@ -14,6 +14,7 @@
 class MenuLabel {
 public:
     static cocos2d::Label* create(const std::string &text);
+    static int fontSize;
 };
 
 #endif /* MenuLabel_hpp */
