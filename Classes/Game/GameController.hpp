@@ -22,11 +22,12 @@ private:
     cocos2d::Sprite* player2;
     cocos2d::Sprite* ball;
 
-
     void setupGameScene();
 public:
     GameController(cocos2d::Scene* scene);
     void updatePosition(cocos2d::Vec2 position);
+    void update();
+    void startNewRound();
     virtual ~GameController();
     
 

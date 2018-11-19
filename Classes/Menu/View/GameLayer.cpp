@@ -56,6 +56,3 @@ bool GameLayer::init() {
 
     return true;
 }
-
-
-

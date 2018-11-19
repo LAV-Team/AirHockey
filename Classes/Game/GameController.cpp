@@ -14,6 +14,7 @@ USING_NS_CC;
 GameController::GameController(Scene* scene) {
     this->scene = scene;
     setupGameScene();
+    startNewRound();
 }
 
 GameController::~GameController() {
@@ -53,5 +54,26 @@ void GameController::updatePosition(cocos2d::Vec2 position) {
         }
     }
     
+}
+
+
+void GameController::update() {
+    Size visibleSize = Director::getInstance()->getVisibleSize();
+    Vec2 origin = Director::getInstance()->getVisibleOrigin();
+
+    Vec2 ballPosition = ball->getPosition();
+    Size ballSize = ball->getContentSize();
     
+    if (ballPosition.x < origin.x - ballSize.width / 2) {
+        startNewRound();
+    } else if ((ballPosition.x > origin.x + visibleSize.width + ballSize.width / 2)) {
+        startNewRound();
+    }
+}
+
+void GameController::startNewRound() {
+    Size visibleSize = Director::getInstance()->getVisibleSize();
+    ball->setPosition(Vec2(visibleSize.width / 2, visibleSize.height / 2));
+    ball->getPhysicsBody()->setVelocity(Vec2(0, 0));
+    ball->getPhysicsBody()->applyImpulse(Vec2(20000, 20000));
 }

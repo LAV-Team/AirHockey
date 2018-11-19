@@ -37,8 +37,6 @@ bool GameSceneViewController::init() {
 
     controller = new GameController(this);
     
-    
-    
     auto touchListener = EventListenerTouchOneByOne::create();
     
     touchListener->onTouchBegan = CC_CALLBACK_2(GameSceneViewController::onTouchBegan, this);
@@ -46,7 +44,8 @@ bool GameSceneViewController::init() {
     
     _eventDispatcher->addEventListenerWithSceneGraphPriority(touchListener, this);
     
-
+    this->scheduleUpdate();
+    
     return true;
 }
 
@@ -63,3 +62,8 @@ bool GameSceneViewController::onTouchBegan(Touch* touch, Event* event) {
 void GameSceneViewController::onTouchMoved(Touch* touch, Event* event) {
     controller->updatePosition(touch->getLocation());
 }
+
+void GameSceneViewController::update(float delta) {
+    controller->update();
+}
+
