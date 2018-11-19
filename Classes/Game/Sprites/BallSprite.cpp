@@ -23,7 +23,6 @@ Sprite* BallSprite::create() {
     auto ballSize = Size(2 * radius, 2 * radius);
     
     ball->setContentSize(ballSize);
-    ball->setPosition(position);
     
     auto physicsBody = PhysicsBody::createCircle(radius, PhysicsMaterial(0.1f, 1, 0));
     //    physicsBody->setMass(1);
@@ -41,3 +40,4 @@ Sprite* BallSprite::create() {
     
     
 }
+

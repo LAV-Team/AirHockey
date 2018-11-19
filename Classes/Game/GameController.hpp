@@ -25,10 +25,13 @@ private:
     void setupGameScene();
 public:
     GameController(cocos2d::Scene* scene);
+    virtual ~GameController();
+
     void updatePosition(cocos2d::Vec2 position);
     void update();
     void startNewRound();
-    virtual ~GameController();
+    void computerBehavior(cocos2d::Vec2 ballPosition);
+
     
 
 };

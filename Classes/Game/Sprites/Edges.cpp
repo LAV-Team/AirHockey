@@ -23,16 +23,16 @@ Node* Edges::create() {
     
     auto edgeNode = Node::create();
     
-    float wallWidth = 1;
+    float wallWidth = 2;
     float goalsHeight = visibleSize.height / 3;
     float verticalWallHeight = visibleSize.height / 2 - goalsHeight / 2;
     
-    auto material = PhysicsMaterial(0.1f, 1, 0);
+    auto material = PhysicsMaterial(1, 1, 0);
     
     
     // creating top wall
     auto topWall = Node::create();
-    topWall->setPosition(visibleSize.width / 2 + origin.x, visibleSize.height + origin.y + wallWidth);
+    topWall->setPosition(visibleSize.width / 2 + origin.x, visibleSize.height + origin.y);
     auto topWallPhysics = PhysicsBody::createEdgeBox(Size(visibleSize.width, wallWidth), material);
     topWall->setPhysicsBody(topWallPhysics);
     edgeNode->addChild(topWall);
@@ -40,7 +40,7 @@ Node* Edges::create() {
     
     // creating bottom wall
     auto bottomWall = Node::create();
-    bottomWall->setPosition(visibleSize.width / 2 + origin.x, origin.y - wallWidth);
+    bottomWall->setPosition(visibleSize.width / 2 + origin.x, origin.y);
     auto bottomWallPhysics = PhysicsBody::createEdgeBox(Size(visibleSize.width, wallWidth), material);
     bottomWall->setPhysicsBody(bottomWallPhysics);
     edgeNode->addChild(bottomWall);
@@ -50,13 +50,13 @@ Node* Edges::create() {
     auto upperLeftWall = Node::create();
     auto upperLeftWallPhysics = PhysicsBody::createEdgeBox(Size(wallWidth, verticalWallHeight), material);
     upperLeftWall->setPhysicsBody(upperLeftWallPhysics);
-    upperLeftWall->setPosition(origin.x - wallWidth, origin.y + visibleSize.height - verticalWallHeight / 2);
+    upperLeftWall->setPosition(origin.x, origin.y + visibleSize.height - verticalWallHeight / 2);
     edgeNode->addChild(upperLeftWall);
     
     auto lowerLeftWall = Node::create();
     auto lowerLeftWallPhysics = PhysicsBody::createEdgeBox(Size(wallWidth, verticalWallHeight), material);
     lowerLeftWall->setPhysicsBody(lowerLeftWallPhysics);
-    lowerLeftWall->setPosition(origin.x - wallWidth, origin.y + verticalWallHeight / 2);
+    lowerLeftWall->setPosition(origin.x, origin.y + verticalWallHeight / 2);
     edgeNode->addChild(lowerLeftWall);
     
     
@@ -64,13 +64,13 @@ Node* Edges::create() {
     auto upperRightWall = Node::create();
     auto upperRightWallPhysics = PhysicsBody::createEdgeBox(Size(wallWidth, verticalWallHeight), material);
     upperRightWall->setPhysicsBody(upperRightWallPhysics);
-    upperRightWall->setPosition(origin.x + visibleSize.width + wallWidth, origin.y + visibleSize.height - verticalWallHeight / 2);
+    upperRightWall->setPosition(origin.x + visibleSize.width, origin.y + visibleSize.height - verticalWallHeight / 2);
     edgeNode->addChild(upperRightWall);
     
     auto lowerRightWall = Node::create();
     auto lowerRightWallPhysics = PhysicsBody::createEdgeBox(Size(wallWidth, verticalWallHeight), material);
     lowerRightWall->setPhysicsBody(lowerRightWallPhysics);
-    lowerRightWall->setPosition(origin.x + visibleSize.width + wallWidth, origin.y + verticalWallHeight / 2);
+    lowerRightWall->setPosition(origin.x + visibleSize.width, origin.y + verticalWallHeight / 2);
     edgeNode->addChild(lowerRightWall);
     
     
