@@ -22,16 +22,8 @@ GameController::~GameController() {
 
 void GameController::setupGameScene() {
     
-    Size visibleSize = Director::getInstance()->getVisibleSize();
-    Vec2 origin = Director::getInstance()->getVisibleOrigin();
-    
-    auto edgeBody = PhysicsBody::createEdgeBox(visibleSize, PhysicsMaterial(0.1f, 1, 0), 3);
-    auto edgeNode = Node::create();
-    
-    edgeNode ->setPosition(Point(visibleSize.width / 2 + origin.x, visibleSize.height / 2 + origin.y));
-    edgeNode->setPhysicsBody(edgeBody);
-    
-    scene->addChild(edgeNode);
+    auto edges = Edges::create();
+    scene->addChild(edges);
 
     player2 = PlayerSprite::create(PlayerSprite::right);
     scene->addChild(player2);

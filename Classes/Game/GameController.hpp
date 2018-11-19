@@ -12,6 +12,7 @@
 #include "cocos2d.h"
 #include "PlayerSprite.hpp"
 #include "BallSprite.hpp"
+#include "Edges.hpp"
 
 
 class GameController {

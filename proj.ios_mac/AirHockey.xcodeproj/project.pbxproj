@@ -43,6 +43,8 @@
 		521A8EA919F11F5000D177D7 /* fonts in Resources */ = {isa = PBXBuildFile; fileRef = 521A8EA819F11F5000D177D7 /* fonts */; };
 		521A8EAA19F11F5000D177D7 /* fonts in Resources */ = {isa = PBXBuildFile; fileRef = 521A8EA819F11F5000D177D7 /* fonts */; };
 		52B47A471A53D09C004E4C60 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52B47A461A53D09B004E4C60 /* Security.framework */; };
+		750ACEBB21A04823005BA77C /* Edges.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750ACEB921A04823005BA77C /* Edges.cpp */; };
+		750ACEBC21A04823005BA77C /* Edges.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 750ACEB921A04823005BA77C /* Edges.cpp */; };
 		75469D92219EED1300E3AE72 /* PlayerSprite.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 75469D90219EED1300E3AE72 /* PlayerSprite.cpp */; };
 		75469D93219EED1700E3AE72 /* PlayerSprite.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 75469D90219EED1300E3AE72 /* PlayerSprite.cpp */; };
 		75469D94219EED1A00E3AE72 /* GameController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 757627D1218DCD0F00621ECF /* GameController.cpp */; };
@@ -151,6 +153,8 @@
 		5087E78A17EB975400C73F5D /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = System/Library/Frameworks/OpenGL.framework; sourceTree = SDKROOT; };
 		521A8EA819F11F5000D177D7 /* fonts */ = {isa = PBXFileReference; lastKnownFileType = folder; path = fonts; sourceTree = "<group>"; };
 		52B47A461A53D09B004E4C60 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/Security.framework; sourceTree = DEVELOPER_DIR; };
+		750ACEB921A04823005BA77C /* Edges.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Edges.cpp; sourceTree = "<group>"; };
+		750ACEBA21A04823005BA77C /* Edges.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Edges.hpp; sourceTree = "<group>"; };
 		75469D90219EED1300E3AE72 /* PlayerSprite.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = PlayerSprite.cpp; sourceTree = "<group>"; };
 		75469D91219EED1300E3AE72 /* PlayerSprite.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = PlayerSprite.hpp; sourceTree = "<group>"; };
 		75469D95219EF4B700E3AE72 /* Player2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Player2.png; sourceTree = "<group>"; };
@@ -360,6 +364,8 @@
 				75469D91219EED1300E3AE72 /* PlayerSprite.hpp */,
 				759AD845219F7AD600769F07 /* BallSprite.cpp */,
 				759AD846219F7AD600769F07 /* BallSprite.hpp */,
+				750ACEB921A04823005BA77C /* Edges.cpp */,
+				750ACEBA21A04823005BA77C /* Edges.hpp */,
 			);
 			path = Sprites;
 			sourceTree = "<group>";
@@ -587,6 +593,7 @@
 				757627AC218D044400621ECF /* MenuLabel.cpp in Sources */,
 				759AD83F219EFD2500769F07 /* GameLayer.cpp in Sources */,
 				1AF87B8B1F6F782A007BE51C /* RootViewController.mm in Sources */,
+				750ACEBB21A04823005BA77C /* Edges.cpp in Sources */,
 				46880B8819C43A87006E1F66 /* AppDelegate.cpp in Sources */,
 				1AF87B8A1F6F7822007BE51C /* main.m in Sources */,
 				75469D92219EED1300E3AE72 /* PlayerSprite.cpp in Sources */,
@@ -604,6 +611,7 @@
 				75469D94219EED1A00E3AE72 /* GameController.cpp in Sources */,
 				759AD840219EFD2500769F07 /* GameLayer.cpp in Sources */,
 				759AD844219EFD2D00769F07 /* GameSceneViewController.cpp in Sources */,
+				750ACEBC21A04823005BA77C /* Edges.cpp in Sources */,
 				759AD848219F7AD600769F07 /* BallSprite.cpp in Sources */,
 				757627BD218D2FE600621ECF /* MenuViewController.cpp in Sources */,
 				757627B2218D2C6400621ECF /* MenuLabel.cpp in Sources */,
