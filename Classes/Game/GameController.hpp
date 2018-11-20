@@ -43,6 +43,7 @@ public:
     void keyboardHandler(cocos2d::EventKeyboard::KeyCode keyCode);
     void movePlayerKeyboard(cocos2d::Sprite* player, Direction direction);
     void movePlayer(cocos2d::Sprite* player, cocos2d::Vec2 position);
+    cocos2d::Vec2 setPositionInSafeArea(cocos2d::Vec2 position);
     
 
 };

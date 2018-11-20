@@ -151,7 +151,6 @@ void GameController::movePlayerKeyboard(Sprite* player, Direction direction) {
     const float xStep = 1;
     
     switch (direction) {
-            
         case up:
             newPosition.y = oldPosition.y + yStep;
             break;
@@ -167,12 +166,40 @@ void GameController::movePlayerKeyboard(Sprite* player, Direction direction) {
     }
     
     movePlayer(player, newPosition);
-    
 }
 
 void GameController::movePlayer(Sprite *player, Vec2 position) {
-
-    auto moveAction = MoveTo::create(0, position);
+    Vec2 newPosition = setPositionInSafeArea(position);
+    
+    auto moveAction = MoveTo::create(0, newPosition);
     player->stopAllActions();
     player->runAction(moveAction);
+}
+
+Vec2 GameController::setPositionInSafeArea(Vec2 position) {
+    Size visibleSize = Director::getInstance()->getVisibleSize();
+    Vec2 origin = Director::getInstance()->getVisibleOrigin();
+    Size playerSize = player1->getContentSize();
+    
+    Vec2 newPosition = position;
+    
+    float maxY = origin.y + visibleSize.height - playerSize.height / 2;
+    float minY = origin.y + playerSize.height / 2;
+    float maxX = origin.x + visibleSize.width - playerSize.width / 2;
+    float minX = origin.x + playerSize.width / 2;
+    
+    if (position.x < minX) {
+        newPosition.x = minX;
+    }
+    if (position.x > maxX) {
+        newPosition.x = maxX;
+    }
+    if (position.y < minY) {
+        newPosition.y = minY;
+    }
+    if (position.y > maxY) {
+        newPosition.y = maxY;
+    }
+    
+    return newPosition;
 }
