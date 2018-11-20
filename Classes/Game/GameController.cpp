@@ -86,26 +86,23 @@ void GameController::startNewRound() {
 }
 
 void GameController::computerBehavior(Vec2 ballPosition) {
-    
-    // works very bad
+    // works not very bad
     
     Size visibleSize = Director::getInstance()->getVisibleSize();
-    Vec2 origin = Director::getInstance()->getVisibleOrigin();
-    
+
     auto player2Position = player2->getPosition();
-    auto physicsBody = player2->getPhysicsBody();
     auto player2Size = player2->getContentSize();
     
-    auto topEdge = Vec2(player2Position.x, origin.y + visibleSize.height * 4 / 5);
-    auto bottomEdge = Vec2(player2Position.x, origin.y + visibleSize.height / 5);
+    float randomX = (arc4random() % (int)visibleSize.width / 5);
     
-    if (player2Position.y > topEdge.y + player2Size.height / 2) {
-        player2->setPosition(topEdge);
-    } else if (player2Position.y    < bottomEdge.y - player2Size.height / 2) {
-        player2->setPosition(bottomEdge);
-    } else {
-        auto velocity = Vec2(0, (ballPosition.y - player2Position.y) * 10);
-        physicsBody->setVelocity(velocity);
+    Vec2 destination = Vec2(randomX, ballPosition.y);
+    Vec2 newPosition = setPositionInSafeArea(destination);
+    
+    float duration = 0.2; // change based on difficulty
+    auto moveAction = MoveTo::create(duration, newPosition);
+
+    if (player2->getNumberOfRunningActions() == 0) {
+        player2->runAction(moveAction);
     }
 }
 
@@ -146,9 +143,10 @@ void GameController::keyboardHandler(EventKeyboard::KeyCode keyCode) {
 void GameController::movePlayerKeyboard(Sprite* player, Direction direction) {
     auto oldPosition = player->getPosition();
     auto newPosition = oldPosition;
+    auto playerSize = player->getContentSize();
     
-    const float yStep = 1;
-    const float xStep = 1;
+    const float yStep = playerSize.height / 20;
+    const float xStep = playerSize.width / 20;
     
     switch (direction) {
         case up:
