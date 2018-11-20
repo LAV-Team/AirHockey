@@ -9,6 +9,7 @@
 #include "cocos2d.h"
 #include "GameLayer.h"
 #include "GameController.hpp"
+#include <vector>
 
 
 class GameLayer;
@@ -27,8 +28,8 @@ public:
     void gameCloseCallback(Ref* pSender);
     virtual bool onTouchBegan(cocos2d::Touch*, cocos2d::Event*);
     virtual void onTouchMoved(cocos2d::Touch*, cocos2d::Event*);
-    
     virtual void update(float delta);
+
     
     // implement the "static create()" method manually
     CREATE_FUNC(GameSceneViewController);

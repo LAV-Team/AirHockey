@@ -13,7 +13,9 @@
 #include "PlayerSprite.hpp"
 #include "BallSprite.hpp"
 #include "Edges.hpp"
+#include "Shared.hpp"
 
+class GameLayer;
 
 class GameController {
 private:
@@ -27,11 +29,20 @@ public:
     GameController(cocos2d::Scene* scene);
     virtual ~GameController();
 
-    void updatePosition(cocos2d::Vec2 position);
+    enum Direction {
+        up,
+        down,
+        left,
+        right
+    };
+    
+    void touchHandler(cocos2d::Vec2 position);
     void update();
     void startNewRound();
     void computerBehavior(cocos2d::Vec2 ballPosition);
-
+    void keyboardHandler(cocos2d::EventKeyboard::KeyCode keyCode);
+    void movePlayerKeyboard(cocos2d::Sprite* player, Direction direction);
+    void movePlayer(cocos2d::Sprite* player, cocos2d::Vec2 position);
     
 
 };

@@ -5,6 +5,8 @@
 #include "GameSceneViewController.h"
 
 USING_NS_CC;
+#include <iostream>
+
 
 
 GameSceneViewController::~GameSceneViewController() {
@@ -23,6 +25,7 @@ cocos2d::Scene * GameSceneViewController::createScene() {
     auto sceneLayer = GameSceneViewController::create();
     scene->addChild(sceneLayer);
     
+
     return scene;
     
 }
@@ -32,6 +35,8 @@ bool GameSceneViewController::init() {
         return false;
     }
     
+    
+
     auto layer = GameLayer::createLayer(this);
     addChild(layer);
 
@@ -45,6 +50,7 @@ bool GameSceneViewController::init() {
     _eventDispatcher->addEventListenerWithSceneGraphPriority(touchListener, this);
     
     this->scheduleUpdate();
+
     
     return true;
 }
@@ -55,15 +61,32 @@ void GameSceneViewController::gameCloseCallback(cocos2d::Ref *pSender) {
 
 
 bool GameSceneViewController::onTouchBegan(Touch* touch, Event* event) {
-    controller->updatePosition(touch->getLocation());
+    controller->touchHandler(touch->getLocation());
     return true;
 }
 
 void GameSceneViewController::onTouchMoved(Touch* touch, Event* event) {
-    controller->updatePosition(touch->getLocation());
+    controller->touchHandler(touch->getLocation());
 }
 
 void GameSceneViewController::update(float delta) {
     controller->update();
 }
+
+
+//void GameSceneViewController::onKeyPressed(EventKeyboard::KeyCode keyCode, Event* event) {
+//    switch (keyCode) {
+//        case EventKeyboard::KeyCode::KEY_RIGHT_ARROW:
+//            std::cout << "www";
+//            controller->startMovingPlayer1();
+//            break;
+//
+//        default:
+//            break;
+//    }
+//}
+//
+//void GameSceneViewController::onKeyReleased(EventKeyboard::KeyCode keyCode, Event* event) {
+//}
+
 

@@ -25,7 +25,7 @@ void GameController::setupGameScene() {
     
     auto edges = Edges::create();
     scene->addChild(edges);
-
+    
     player1 = PlayerSprite::create(PlayerSprite::right);
     scene->addChild(player1);
     
@@ -37,20 +37,20 @@ void GameController::setupGameScene() {
     
 }
 
-void GameController::updatePosition(cocos2d::Vec2 position) {
+void GameController::touchHandler(cocos2d::Vec2 position) {
     
     Size visibleSize = Director::getInstance()->getVisibleSize();
     float sceneWidth = visibleSize.width;
     float playerRadius = player1->getContentSize().width / 2;
     
     if (position.x > sceneWidth / 2 + playerRadius) {
-        player1->setPosition(position);
+        movePlayer(player1, position);
     }
-
+    
     bool twoPlayersOnDevice = true;
     if (twoPlayersOnDevice) {
         if (position.x < sceneWidth / 2 - playerRadius) {
-            player2->setPosition(position);
+            movePlayer(player2, position);
         }
     }
     
@@ -60,7 +60,7 @@ void GameController::updatePosition(cocos2d::Vec2 position) {
 void GameController::update() {
     Size visibleSize = Director::getInstance()->getVisibleSize();
     Vec2 origin = Director::getInstance()->getVisibleOrigin();
-
+    
     Vec2 ballPosition = ball->getPosition();
     Size ballSize = ball->getContentSize();
     
@@ -91,7 +91,7 @@ void GameController::computerBehavior(Vec2 ballPosition) {
     
     Size visibleSize = Director::getInstance()->getVisibleSize();
     Vec2 origin = Director::getInstance()->getVisibleOrigin();
-
+    
     auto player2Position = player2->getPosition();
     auto physicsBody = player2->getPhysicsBody();
     auto player2Size = player2->getContentSize();
@@ -101,10 +101,78 @@ void GameController::computerBehavior(Vec2 ballPosition) {
     
     if (player2Position.y > topEdge.y + player2Size.height / 2) {
         player2->setPosition(topEdge);
-    } else if (player2Position.y < bottomEdge.y - player2Size.height / 2) {
+    } else if (player2Position.y    < bottomEdge.y - player2Size.height / 2) {
         player2->setPosition(bottomEdge);
     } else {
         auto velocity = Vec2(0, (ballPosition.y - player2Position.y) * 10);
         physicsBody->setVelocity(velocity);
     }
+}
+
+
+void GameController::keyboardHandler(EventKeyboard::KeyCode keyCode) {
+    
+    switch (keyCode) {
+        case KEY_W:
+            movePlayerKeyboard(player2, up);
+            break;
+        case KEY_S:
+            movePlayerKeyboard(player2, down);
+            break;
+        case KEY_A:
+            movePlayerKeyboard(player2, left);
+            break;
+        case KEY_D:
+            movePlayerKeyboard(player2, right);
+            break;
+        case UP_ARROW:
+            movePlayerKeyboard(player1, up);
+            break;
+        case DOWN_ARROW:
+            movePlayerKeyboard(player1, down);
+            break;
+        case LEFT_ARROW:
+            movePlayerKeyboard(player1, left);
+            break;
+        case RIGHT_ARROW:
+            movePlayerKeyboard(player1, right);
+            break;
+        default:
+            break;
+    }
+    
+}
+
+void GameController::movePlayerKeyboard(Sprite* player, Direction direction) {
+    auto oldPosition = player->getPosition();
+    auto newPosition = oldPosition;
+    
+    const float yStep = 1;
+    const float xStep = 1;
+    
+    switch (direction) {
+            
+        case up:
+            newPosition.y = oldPosition.y + yStep;
+            break;
+        case down:
+            newPosition.y = oldPosition.y - yStep;
+            break;
+        case left:
+            newPosition.x = oldPosition.x - xStep;
+            break;
+        case right:
+            newPosition.x = oldPosition.x + xStep;
+            break;
+    }
+    
+    movePlayer(player, newPosition);
+    
+}
+
+void GameController::movePlayer(Sprite *player, Vec2 position) {
+
+    auto moveAction = MoveTo::create(0, position);
+    player->stopAllActions();
+    player->runAction(moveAction);
 }
