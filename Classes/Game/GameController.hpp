@@ -23,6 +23,9 @@ private:
     cocos2d::Sprite* player1;
     cocos2d::Sprite* player2;
     cocos2d::Sprite* ball;
+    GameMode gameMode = twoPlayersOnDevice;
+    Difficulty difficulty = hard;
+    
 
     void setupGameScene();
 public:
@@ -39,11 +42,11 @@ public:
     void touchHandler(cocos2d::Vec2 position);
     void update();
     void startNewRound();
-    void computerBehavior(cocos2d::Vec2 ballPosition);
+    void computerBehavior(cocos2d::Vec2 ballPosition, Difficulty difficulty);
     void keyboardHandler(cocos2d::EventKeyboard::KeyCode keyCode);
     void movePlayerKeyboard(cocos2d::Sprite* player, Direction direction);
     void movePlayer(cocos2d::Sprite* player, cocos2d::Vec2 position);
-    cocos2d::Vec2 setPositionInSafeArea(cocos2d::Vec2 position);
+    cocos2d::Vec2 setPositionInSafeArea(cocos2d::Sprite* player, cocos2d::Vec2 position);
     
 
 };

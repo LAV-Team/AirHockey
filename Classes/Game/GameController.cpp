@@ -47,8 +47,7 @@ void GameController::touchHandler(cocos2d::Vec2 position) {
         movePlayer(player1, position);
     }
     
-    bool twoPlayersOnDevice = true;
-    if (twoPlayersOnDevice) {
+    if (gameMode == twoPlayersOnDevice) {
         if (position.x < sceneWidth / 2 - playerRadius) {
             movePlayer(player2, position);
         }
@@ -70,10 +69,10 @@ void GameController::update() {
         startNewRound();
     }
     
-    bool withComputer = false;
-    if (withComputer) {
-        computerBehavior(ballPosition);
+    if (gameMode == withComputer) {
+        computerBehavior(ballPosition, difficulty);
     }
+    
 }
 
 void GameController::startNewRound() {
@@ -85,43 +84,72 @@ void GameController::startNewRound() {
     
 }
 
-void GameController::computerBehavior(Vec2 ballPosition) {
-    // works not very bad
+void GameController::computerBehavior(Vec2 ballPosition, Difficulty difficulty) {
+    // works very bad
+    
+    
+    float duration; // change based on difficulty
+    
+    switch (difficulty) {
+        case easy:
+            duration = 0.3;
+            break;
+        case medium:
+            duration = 0.2;
+            break;
+        case hard:
+            duration = 0.1;
+            break;
+        default:
+            return;
+    }
     
     Size visibleSize = Director::getInstance()->getVisibleSize();
+    Vec2 origin = Director::getInstance()->getVisibleOrigin();
 
     auto player2Position = player2->getPosition();
     auto player2Size = player2->getContentSize();
     
-    float randomX = (arc4random() % (int)visibleSize.width / 5);
-    
-    Vec2 destination = Vec2(randomX, ballPosition.y);
-    Vec2 newPosition = setPositionInSafeArea(destination);
-    
-    float duration = 0.2; // change based on difficulty
-    auto moveAction = MoveTo::create(duration, newPosition);
+//    if (abs(ballPosition.x - player2Position.x) < player2Size.width / 2 + ball->getContentSize().width / 2) {
+//        player2->stopActionByTag(1);
+//        return;
+//    }
 
-    if (player2->getNumberOfRunningActions() == 0) {
-        player2->runAction(moveAction);
+    
+    float randomX = (arc4random() % (int)visibleSize.width / 4);
+    
+    while (randomX > ballPosition.x && ballPosition.x > origin.x) {
+        randomX /= 2;
     }
+    
+    
+    Vec2 destinationY = Vec2(player2Position.x, ballPosition.y);
+    Vec2 newPositionY = setPositionInSafeArea(player2, destinationY);
+    Vec2 deltaMoveY = Vec2(0, ballPosition.y -  player2Position.y);
+    
+    Vec2 destinationX = Vec2(randomX, player2Position.y);
+    Vec2 newPositionX = setPositionInSafeArea(player2, destinationX);
+    Vec2 deltaMoveX = Vec2(newPositionX.x - player2Position.x, 0);
+    
+    auto moveY = MoveBy::create(0, deltaMoveY);
+    moveY->setTag(0);
+    if (player2->getNumberOfRunningActionsByTag(0) == 0) {
+        player2->runAction(moveY);
+    }
+    
+    auto moveX = MoveBy::create(duration * 5, deltaMoveX);
+    moveX->setTag(1);
+    if (player2->getNumberOfRunningActionsByTag(1) == 0) {
+        player2->runAction(moveX);
+    }
+    
+    
 }
 
 
 void GameController::keyboardHandler(EventKeyboard::KeyCode keyCode) {
     
     switch (keyCode) {
-        case KEY_W:
-            movePlayerKeyboard(player2, up);
-            break;
-        case KEY_S:
-            movePlayerKeyboard(player2, down);
-            break;
-        case KEY_A:
-            movePlayerKeyboard(player2, left);
-            break;
-        case KEY_D:
-            movePlayerKeyboard(player2, right);
-            break;
         case UP_ARROW:
             movePlayerKeyboard(player1, up);
             break;
@@ -136,6 +164,25 @@ void GameController::keyboardHandler(EventKeyboard::KeyCode keyCode) {
             break;
         default:
             break;
+    }
+    
+    if (gameMode == twoPlayersOnDevice) {
+        switch (keyCode) {
+            case KEY_W:
+                movePlayerKeyboard(player2, up);
+                break;
+            case KEY_S:
+                movePlayerKeyboard(player2, down);
+                break;
+            case KEY_A:
+                movePlayerKeyboard(player2, left);
+                break;
+            case KEY_D:
+                movePlayerKeyboard(player2, right);
+                break;
+            default:
+                break;
+        }
     }
     
 }
@@ -167,14 +214,14 @@ void GameController::movePlayerKeyboard(Sprite* player, Direction direction) {
 }
 
 void GameController::movePlayer(Sprite *player, Vec2 position) {
-    Vec2 newPosition = setPositionInSafeArea(position);
+    Vec2 newPosition = setPositionInSafeArea(player, position);
     
     auto moveAction = MoveTo::create(0, newPosition);
     player->stopAllActions();
     player->runAction(moveAction);
 }
 
-Vec2 GameController::setPositionInSafeArea(Vec2 position) {
+Vec2 GameController::setPositionInSafeArea(Sprite* player, Vec2 position) {
     Size visibleSize = Director::getInstance()->getVisibleSize();
     Vec2 origin = Director::getInstance()->getVisibleOrigin();
     Size playerSize = player1->getContentSize();
@@ -185,6 +232,12 @@ Vec2 GameController::setPositionInSafeArea(Vec2 position) {
     float minY = origin.y + playerSize.height / 2;
     float maxX = origin.x + visibleSize.width - playerSize.width / 2;
     float minX = origin.x + playerSize.width / 2;
+    
+    if (player == player1) {
+        minX = minX + visibleSize.width / 2;
+    } else if (player == player2) {
+        maxX = maxX - visibleSize.width / 2;
+    }
     
     if (position.x < minX) {
         newPosition.x = minX;

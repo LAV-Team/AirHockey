@@ -27,5 +27,18 @@ const EventKeyboard::KeyCode KEY_A = EventKeyboard::KeyCode::KEY_A;
 const EventKeyboard::KeyCode KEY_D = EventKeyboard::KeyCode::KEY_D;
 
 
+typedef enum {
+    withComputer,
+    twoPlayersOnDevice,
+    online
+} GameMode;
+
+
+typedef enum {
+    easy,
+    medium,
+    hard
+} Difficulty;
+
 
 #endif /* Shared_hpp */
