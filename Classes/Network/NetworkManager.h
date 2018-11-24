@@ -6,25 +6,15 @@
 
 namespace HockeyNet
 {
-	class NetworkException
-		: public std::exception
-	{
-	public:
-		explicit NetworkException(std::string const& message)
-			: exception{ message.c_str() }
-		{}
-	};
+	class NetworkManager;
+	typedef boost::shared_ptr<NetworkManager> NetworkManagerPtr;
 
-	static std::string const STRIKER_DATA{ "DS" };
-	struct StrikerInfo
-	{
+	struct StrikerInfo {
 		short int x;
 		short int y;
 	};
 
-	static std::string const PUCK_DATA{ "DP" };
-	struct PuckInfo
-	{
+	struct PuckInfo {
 		short int x;
 		short int y;
 		float vX;
@@ -35,6 +25,16 @@ namespace HockeyNet
 	typedef boost::function<void()> OnStopHandler;
 	typedef boost::function<void(StrikerInfo const&)> OnStrikerHandler;
 	typedef boost::function<void(PuckInfo const&)> OnPuckHandler;
+
+	static std::string const STRIKER_DATA{ "DS" };
+	static std::string const PUCK_DATA{ "DP" };
+
+	class NetworkException
+		: public std::exception
+	{
+	public:
+		explicit NetworkException(std::string const& message);
+	};
 
 	class NetworkManager
 		: public boost::enable_shared_from_this<NetworkManager>

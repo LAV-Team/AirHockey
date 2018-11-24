@@ -1,5 +1,9 @@
 #include "NetworkManager.h"
 
+HockeyNet::NetworkException::NetworkException(std::string const & message)
+	: exception{ message.c_str() }
+{}
+
 HockeyNet::NetworkManagerPtr HockeyNet::NetworkManager::Create()
 {
 	NetworkManagerPtr networkManager{ new NetworkManager {} };

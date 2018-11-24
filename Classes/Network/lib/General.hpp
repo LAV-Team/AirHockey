@@ -10,19 +10,15 @@
 #include <boost/thread.hpp>
 #include <boost/function.hpp>
 
-namespace HockeyNet 
+namespace HockeyNet
 {
 	class Receiver;
 	class Transmitter;
 	class Transceiver;
-	class Network;
-	class NetworkManager;
 
 	typedef boost::shared_ptr<Receiver> ReceiverPtr;
 	typedef boost::shared_ptr<Transmitter> TransmitterPtr;
 	typedef boost::shared_ptr<Transceiver> TransceiverPtr;
-	typedef boost::shared_ptr<Network> NetworkPtr;
-	typedef boost::shared_ptr<NetworkManager> NetworkManagerPtr;
 
 	typedef boost::shared_ptr<boost::asio::ip::tcp::socket> SocketPtr;
 	typedef boost::function<void(boost::system::error_code const&)> OnErrorHandler;

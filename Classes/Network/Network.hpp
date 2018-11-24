@@ -6,6 +6,9 @@
 
 namespace HockeyNet
 {
+	class Network;
+	typedef boost::shared_ptr<Network> NetworkPtr;
+
 	class Network
 		: public boost::enable_shared_from_this<Network>
 		, boost::noncopyable
