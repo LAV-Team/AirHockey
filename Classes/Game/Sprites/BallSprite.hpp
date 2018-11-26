@@ -17,6 +17,7 @@ private:
     
 public:
     static cocos2d::Sprite* create();
+    void toStartPosition();
 };
 
 #endif /* BallSprite_hpp */

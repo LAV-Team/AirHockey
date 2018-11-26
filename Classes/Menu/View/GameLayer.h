@@ -9,6 +9,7 @@
 #include <iostream>
 #include "cocos2d.h"
 #include "GameSceneViewController.h"
+#include "Shared.hpp"
 
 class GameSceneViewController;
 
@@ -23,8 +24,14 @@ public:
     GameLayer(){}
     ~GameLayer(){}
 
-
+    virtual void onKeyPressed(cocos2d::EventKeyboard::KeyCode keyCode, cocos2d::Event* event);
+    virtual void onKeyReleased(cocos2d::EventKeyboard::KeyCode keyCode, cocos2d::Event* event);
+    
+    std::vector<cocos2d::EventKeyboard::KeyCode> heldKeys;
+    
+    void onKeyHold(float interval);
     CREATE_FUNC(GameLayer);
+    
 };
 
 
