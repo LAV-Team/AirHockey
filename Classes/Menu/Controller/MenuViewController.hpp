@@ -11,7 +11,8 @@
 
 #include <stdio.h>
 #include "cocos2d.h"
-#include "MenuLayer.hpp"
+
+#include "Classes/Menu/View/MenuLayer.hpp"
 #include "GameSceneViewController.h"
 
 class MenuLayer;
