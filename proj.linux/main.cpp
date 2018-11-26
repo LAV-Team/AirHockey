@@ -22,7 +22,7 @@
  THE SOFTWARE.
  ****************************************************************************/
 
-#include "AppDelegate.h"
+#include "../Classes/AppDelegate/AppDelegate.h"
 
 #include <stdlib.h>
 #include <stdio.h>

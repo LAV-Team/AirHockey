@@ -11,8 +11,8 @@
 #include <stdio.h>
 #include <iostream>
 #include "cocos2d.h"
-#include "Classes/Menu/View/MenuLabel.hpp"
-#include "Classes/Menu/Controller/MenuViewController.hpp"
+#include "MenuLabel.hpp"
+#include "../Controller/MenuViewController.hpp"
 
 class MenuViewController;
 

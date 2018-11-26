@@ -49,32 +49,46 @@ if(APPLE OR WINDOWS)
 endif()
 
 include_directories(
-        Classes
-        Classes
-        Classes/AppDelegate
-        Classes/Game
-        Classes/Menu/Controller
-        Classes/Menu/View
         ${COCOS2DX_ROOT_PATH}/cocos/audio/include/
+
 )
 # add cross-platforms source files and header files 
 list(APPEND GAME_SOURCE
         Classes/AppDelegate/AppDelegate.cpp
-        Classes/Game/GameViewController.cpp
-        Classes/Menu/Controller/MenuViewController.cpp
+        Classes/Game/Sprites/BallSprite.cpp
+        Classes/Game/Sprites/Edges.cpp
+        Classes/Game/Sprites/PlayerSprite.cpp
+        Classes/Game/GameController.cpp
+        Classes/Game/Shared.cpp
         Classes/Menu/Controller/GameSceneViewController.cpp
+        Classes/Menu/Controller/MenuViewController.cpp
+        Classes/Menu/View/GameLayer.cpp
         Classes/Menu/View/MenuLabel.cpp
         Classes/Menu/View/MenuLayer.cpp
-        Classes/Menu/View/GameLayer.cpp
+        Classes/Network/lib/Receiver.cpp
+        Classes/Network/lib/Transmitter.cpp
+        Classes/Network/lib/Transceiver.cpp
+        Classes/Network/Network.cpp
+        Classes/Network/NetworkManager.cpp
      )
 list(APPEND GAME_HEADER
         Classes/AppDelegate/AppDelegate.h
-        Classes/Game/GameViewController.hpp
-        Classes/Menu/Controller/MenuViewController.hpp
+        Classes/Game/Sprites/BallSprite.hpp
+        Classes/Game/Sprites/Edges.hpp
+        Classes/Game/Sprites/PlayerSprite.hpp
+        Classes/Game/GameController.hpp
+        Classes/Game/Shared.hpp
         Classes/Menu/Controller/GameSceneViewController.h
+        Classes/Menu/Controller/MenuViewController.hpp
+        Classes/Menu/View/GameLayer.h
         Classes/Menu/View/MenuLabel.hpp
         Classes/Menu/View/MenuLayer.hpp
-        Classes/Menu/View/GameLayer.h
+        Classes/Network/lib/General.hpp
+        Classes/Network/lib/Receiver.hpp
+        Classes/Network/lib/Transmitter.hpp
+        Classes/Network/lib/Transceiver.hpp
+        Classes/Network/Network.hpp
+        Classes/Network/NetworkManager.h
      )
 
 if(ANDROID)
