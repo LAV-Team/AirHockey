@@ -10,9 +10,9 @@
 
 #include <stdio.h>
 #include "cocos2d.h"
-#include "PlayerSprite.hpp"
-#include "BallSprite.hpp"
-#include "Edges.hpp"
+#include "Sprites/PlayerSprite.hpp"
+#include "Sprites/BallSprite.hpp"
+#include "Sprites/Edges.hpp"
 #include "Shared.hpp"
 
 class GameLayer;

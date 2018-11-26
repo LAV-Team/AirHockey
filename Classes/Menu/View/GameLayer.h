@@ -8,8 +8,8 @@
 #include <stdio.h>
 #include <iostream>
 #include "cocos2d.h"
-#include "GameSceneViewController.h"
-#include "Shared.hpp"
+#include "../Controller/GameSceneViewController.h"
+#include "../../Game/Shared.hpp"
 
 class GameSceneViewController;
 

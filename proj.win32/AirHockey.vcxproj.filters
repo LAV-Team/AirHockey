@@ -31,6 +31,9 @@
     <Filter Include="src\Network\lib">
       <UniqueIdentifier>{a4c2de01-f697-49b5-9adb-00771d384c4e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\Game\Sprites">
+      <UniqueIdentifier>{725adedd-9450-4d2f-b106-46eb8e7a271a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -60,11 +63,29 @@
     <ClCompile Include="..\Classes\Network\lib\Transmitter.cpp">
       <Filter>src\Network\lib</Filter>
     </ClCompile>
-    <ClCompile Include="..\Classes\Game\GameViewController.cpp">
-      <Filter>src\Game</Filter>
-    </ClCompile>
     <ClCompile Include="..\Classes\Network\NetworkManager.cpp">
       <Filter>src\Network</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Game\GameController.cpp">
+      <Filter>src\Game</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Game\Shared.cpp">
+      <Filter>src\Game</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Game\Sprites\BallSprite.cpp">
+      <Filter>src\Game\Sprites</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Game\Sprites\Edges.cpp">
+      <Filter>src\Game\Sprites</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Game\Sprites\PlayerSprite.cpp">
+      <Filter>src\Game\Sprites</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Menu\Controller\GameSceneViewController.cpp">
+      <Filter>src\Menu\Controller</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Menu\View\GameLayer.cpp">
+      <Filter>src\Menu\View</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -95,14 +116,32 @@
     <ClInclude Include="..\Classes\Network\lib\Transmitter.hpp">
       <Filter>src\Network\lib</Filter>
     </ClInclude>
-    <ClInclude Include="..\Classes\Game\GameViewController.hpp">
-      <Filter>src\Game</Filter>
-    </ClInclude>
     <ClInclude Include="..\Classes\Network\NetworkManager.h">
       <Filter>src\Network</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\Network\lib\General.hpp">
       <Filter>src\Network\lib</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Game\GameController.hpp">
+      <Filter>src\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Game\Shared.hpp">
+      <Filter>src\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Game\Sprites\BallSprite.hpp">
+      <Filter>src\Game\Sprites</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Game\Sprites\Edges.hpp">
+      <Filter>src\Game\Sprites</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Game\Sprites\PlayerSprite.hpp">
+      <Filter>src\Game\Sprites</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Menu\Controller\GameSceneViewController.h">
+      <Filter>src\Menu\Controller</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Menu\View\GameLayer.h">
+      <Filter>src\Menu\View</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

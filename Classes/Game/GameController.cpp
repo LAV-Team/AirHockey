@@ -6,7 +6,6 @@
 //
 
 #include "GameController.hpp"
-#include <iostream>
 
 
 USING_NS_CC;
@@ -115,8 +114,8 @@ void GameController::computerBehavior(Vec2 ballPosition, Difficulty difficulty) 
 //        return;
 //    }
 
-    
-    float randomX = (arc4random() % (int)visibleSize.width / 4);
+	srand(time(0));
+    float randomX = (rand() % (int)visibleSize.width / 4);
     
     while (randomX > ballPosition.x && ballPosition.x > origin.x) {
         randomX /= 2;

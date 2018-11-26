@@ -7,8 +7,8 @@
 
 
 #include "cocos2d.h"
-#include "GameLayer.h"
-#include "GameController.hpp"
+#include "../View/GameLayer.h"
+#include "../../Game/GameController.hpp"
 #include <vector>
 
 
