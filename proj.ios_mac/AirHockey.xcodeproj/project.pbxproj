@@ -60,6 +60,14 @@
 		757627BD218D2FE600621ECF /* MenuViewController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 757627BA218D2F2900621ECF /* MenuViewController.cpp */; };
 		757627D0218DCCEF00621ECF /* NetworkManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 757627CE218DCCEF00621ECF /* NetworkManager.cpp */; };
 		757627D3218DCD0F00621ECF /* GameController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 757627D1218DCD0F00621ECF /* GameController.cpp */; };
+		758FCD9A21B4452E007632E3 /* Network.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 758FCD9921B4452E007632E3 /* Network.cpp */; };
+		758FCD9B21B4452E007632E3 /* Network.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 758FCD9921B4452E007632E3 /* Network.cpp */; };
+		758FCDA421B4453E007632E3 /* Transmitter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 758FCD9D21B4453E007632E3 /* Transmitter.cpp */; };
+		758FCDA521B4453E007632E3 /* Transmitter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 758FCD9D21B4453E007632E3 /* Transmitter.cpp */; };
+		758FCDA621B4453E007632E3 /* Transceiver.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 758FCDA121B4453E007632E3 /* Transceiver.cpp */; };
+		758FCDA721B4453E007632E3 /* Transceiver.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 758FCDA121B4453E007632E3 /* Transceiver.cpp */; };
+		758FCDA821B4453E007632E3 /* Receiver.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 758FCDA221B4453E007632E3 /* Receiver.cpp */; };
+		758FCDA921B4453E007632E3 /* Receiver.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 758FCDA221B4453E007632E3 /* Receiver.cpp */; };
 		759AD83B219EFD1B00769F07 /* Background.png in Resources */ = {isa = PBXBuildFile; fileRef = 759AD839219EFD1B00769F07 /* Background.png */; };
 		759AD83C219EFD1B00769F07 /* Background.png in Resources */ = {isa = PBXBuildFile; fileRef = 759AD839219EFD1B00769F07 /* Background.png */; };
 		759AD83F219EFD2500769F07 /* GameLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 759AD83D219EFD2500769F07 /* GameLayer.cpp */; };
@@ -167,9 +175,18 @@
 		757627BA218D2F2900621ECF /* MenuViewController.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = MenuViewController.cpp; path = ../../Menu/Controller/MenuViewController.cpp; sourceTree = "<group>"; };
 		757627BB218D2F2900621ECF /* MenuViewController.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; name = MenuViewController.hpp; path = ../../Menu/Controller/MenuViewController.hpp; sourceTree = "<group>"; };
 		757627CE218DCCEF00621ECF /* NetworkManager.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = NetworkManager.cpp; sourceTree = "<group>"; };
-		757627CF218DCCEF00621ECF /* NetworkManager.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = NetworkManager.hpp; sourceTree = "<group>"; };
+		757627CF218DCCEF00621ECF /* NetworkManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NetworkManager.h; sourceTree = "<group>"; };
 		757627D1218DCD0F00621ECF /* GameController.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = GameController.cpp; sourceTree = "<group>"; };
 		757627D2218DCD0F00621ECF /* GameController.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = GameController.hpp; sourceTree = "<group>"; };
+		758FCD9821B4452E007632E3 /* Network.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Network.hpp; sourceTree = "<group>"; };
+		758FCD9921B4452E007632E3 /* Network.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Network.cpp; sourceTree = "<group>"; };
+		758FCD9D21B4453E007632E3 /* Transmitter.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Transmitter.cpp; sourceTree = "<group>"; };
+		758FCD9E21B4453E007632E3 /* Transceiver.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Transceiver.hpp; sourceTree = "<group>"; };
+		758FCD9F21B4453E007632E3 /* Receiver.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Receiver.hpp; sourceTree = "<group>"; };
+		758FCDA021B4453E007632E3 /* Transmitter.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Transmitter.hpp; sourceTree = "<group>"; };
+		758FCDA121B4453E007632E3 /* Transceiver.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Transceiver.cpp; sourceTree = "<group>"; };
+		758FCDA221B4453E007632E3 /* Receiver.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Receiver.cpp; sourceTree = "<group>"; };
+		758FCDA321B4453E007632E3 /* General.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = General.hpp; sourceTree = "<group>"; };
 		759AD839219EFD1B00769F07 /* Background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Background.png; sourceTree = "<group>"; };
 		759AD83D219EFD2500769F07 /* GameLayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GameLayer.cpp; sourceTree = "<group>"; };
 		759AD83E219EFD2500769F07 /* GameLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameLayer.h; sourceTree = "<group>"; };
@@ -426,8 +443,11 @@
 		757627CC218DCCB800621ECF /* Network */ = {
 			isa = PBXGroup;
 			children = (
+				758FCD9C21B4453E007632E3 /* lib */,
+				758FCD9921B4452E007632E3 /* Network.cpp */,
+				758FCD9821B4452E007632E3 /* Network.hpp */,
 				757627CE218DCCEF00621ECF /* NetworkManager.cpp */,
-				757627CF218DCCEF00621ECF /* NetworkManager.hpp */,
+				757627CF218DCCEF00621ECF /* NetworkManager.h */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -442,6 +462,20 @@
 				75CABC2B21A4B45800D8C754 /* Shared.hpp */,
 			);
 			path = Game;
+			sourceTree = "<group>";
+		};
+		758FCD9C21B4453E007632E3 /* lib */ = {
+			isa = PBXGroup;
+			children = (
+				758FCD9D21B4453E007632E3 /* Transmitter.cpp */,
+				758FCD9E21B4453E007632E3 /* Transceiver.hpp */,
+				758FCD9F21B4453E007632E3 /* Receiver.hpp */,
+				758FCDA021B4453E007632E3 /* Transmitter.hpp */,
+				758FCDA121B4453E007632E3 /* Transceiver.cpp */,
+				758FCDA221B4453E007632E3 /* Receiver.cpp */,
+				758FCDA321B4453E007632E3 /* General.hpp */,
+			);
+			path = lib;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -589,16 +623,20 @@
 			buildActionMask = 2147483647;
 			files = (
 				757627D0218DCCEF00621ECF /* NetworkManager.cpp in Sources */,
+				758FCDA421B4453E007632E3 /* Transmitter.cpp in Sources */,
 				759AD847219F7AD600769F07 /* BallSprite.cpp in Sources */,
 				757627BC218D2F2900621ECF /* MenuViewController.cpp in Sources */,
 				757627A1218CED2600621ECF /* MenuLayer.cpp in Sources */,
 				759AD843219EFD2D00769F07 /* GameSceneViewController.cpp in Sources */,
 				1AF87B781F6F77F7007BE51C /* AppController.mm in Sources */,
+				758FCD9A21B4452E007632E3 /* Network.cpp in Sources */,
+				758FCDA621B4453E007632E3 /* Transceiver.cpp in Sources */,
 				757627D3218DCD0F00621ECF /* GameController.cpp in Sources */,
 				757627AC218D044400621ECF /* MenuLabel.cpp in Sources */,
 				759AD83F219EFD2500769F07 /* GameLayer.cpp in Sources */,
 				75CABC2C21A4B45800D8C754 /* Shared.cpp in Sources */,
 				1AF87B8B1F6F782A007BE51C /* RootViewController.mm in Sources */,
+				758FCDA821B4453E007632E3 /* Receiver.cpp in Sources */,
 				750ACEBB21A04823005BA77C /* Edges.cpp in Sources */,
 				46880B8819C43A87006E1F66 /* AppDelegate.cpp in Sources */,
 				1AF87B8A1F6F7822007BE51C /* main.m in Sources */,
@@ -610,16 +648,20 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				758FCDA921B4453E007632E3 /* Receiver.cpp in Sources */,
 				757627B5218D2E8C00621ECF /* MenuLayer.cpp in Sources */,
 				75469D93219EED1700E3AE72 /* PlayerSprite.cpp in Sources */,
 				46880B8919C43A87006E1F66 /* AppDelegate.cpp in Sources */,
 				503AE10517EB98FF00D1A890 /* main.cpp in Sources */,
 				75469D94219EED1A00E3AE72 /* GameController.cpp in Sources */,
 				759AD840219EFD2500769F07 /* GameLayer.cpp in Sources */,
+				758FCDA721B4453E007632E3 /* Transceiver.cpp in Sources */,
 				759AD844219EFD2D00769F07 /* GameSceneViewController.cpp in Sources */,
 				750ACEBC21A04823005BA77C /* Edges.cpp in Sources */,
 				759AD848219F7AD600769F07 /* BallSprite.cpp in Sources */,
+				758FCDA521B4453E007632E3 /* Transmitter.cpp in Sources */,
 				757627BD218D2FE600621ECF /* MenuViewController.cpp in Sources */,
+				758FCD9B21B4452E007632E3 /* Network.cpp in Sources */,
 				757627B2218D2C6400621ECF /* MenuLabel.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -787,6 +829,7 @@
 					"$(SRCROOT)/../cocos2d/external",
 					"$(SRCROOT)/../cocos2d/external/chipmunk/include/chipmunk",
 					"$(SRCROOT)/../cocos2d/cocos/editor-support",
+					/usr/local/Cellar/boost/1.68.0/include/,
 				);
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				MACOSX_DEPLOYMENT_TARGET = 10.7;
@@ -811,6 +854,7 @@
 					"$(SRCROOT)/../cocos2d/external",
 					"$(SRCROOT)/../cocos2d/external/chipmunk/include/chipmunk",
 					"$(SRCROOT)/../cocos2d/cocos/editor-support",
+					/usr/local/Cellar/boost/1.68.0/include/,
 				);
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				MACOSX_DEPLOYMENT_TARGET = 10.7;
