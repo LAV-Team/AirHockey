@@ -13,6 +13,10 @@ USING_NS_CC;
 GameController::GameController(Scene* scene) {
     this->scene = scene;
     setupGameScene();
+    
+    player1Score = 0;
+    player2Score = 0;
+    
     startNewRound();
 }
 
@@ -34,6 +38,19 @@ void GameController::setupGameScene() {
     ball = BallSprite::create();
     scene->addChild(ball);
     
+    Size visibleSize = Director::getInstance()->getVisibleSize();
+    Vec2 origin = Director::getInstance()->getVisibleOrigin();
+    
+    player1ScoreLabel = MenuLabel::create("0");
+    Vec2 pos1 = Vec2(visibleSize.width / 2 + (player1ScoreLabel->getContentSize().width * 2), visibleSize.height - (player1ScoreLabel->getContentSize().height * 1.5));
+    player1ScoreLabel->setPosition(pos1);
+    scene->addChild(player1ScoreLabel);
+
+    player2ScoreLabel = MenuLabel::create("0");
+    Vec2 pos2 = Vec2(visibleSize.width / 2 - (player2ScoreLabel->getContentSize().width * 2), visibleSize.height - (player2ScoreLabel->getContentSize().height * 1.5));
+    player2ScoreLabel->setPosition(pos2);
+    scene->addChild(player2ScoreLabel);
+
 }
 
 void GameController::touchHandler(cocos2d::Vec2 position) {
@@ -63,8 +80,10 @@ void GameController::update() {
     Size ballSize = ball->getContentSize();
     
     if (ballPosition.x < origin.x - ballSize.width / 2) {
+        player1Score += 1;
         startNewRound();
     } else if ((ballPosition.x > origin.x + visibleSize.width + ballSize.width / 2)) {
+        player2Score += 1;
         startNewRound();
     }
     
@@ -80,6 +99,9 @@ void GameController::startNewRound() {
     ball->setPosition(Vec2(visibleSize.width / 2, visibleSize.height / 2));
     ball->getPhysicsBody()->setVelocity(Vec2(0, 0));
     ball->getPhysicsBody()->applyImpulse(Vec2(20000, 20000));
+    
+    player1ScoreLabel->setString(std::to_string(player1Score));
+    player2ScoreLabel->setString(std::to_string(player2Score));
     
 }
 
@@ -191,8 +213,8 @@ void GameController::movePlayerKeyboard(Sprite* player, Direction direction) {
     auto newPosition = oldPosition;
     auto playerSize = player->getContentSize();
     
-    const float yStep = playerSize.height / 20;
-    const float xStep = playerSize.width / 20;
+    const float yStep = playerSize.height / 10;
+    const float xStep = playerSize.width / 10;
     
     switch (direction) {
         case up:

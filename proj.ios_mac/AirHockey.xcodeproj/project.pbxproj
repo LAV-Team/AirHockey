@@ -52,6 +52,7 @@
 		75469D97219EF4B700E3AE72 /* Player2.png in Resources */ = {isa = PBXBuildFile; fileRef = 75469D95219EF4B700E3AE72 /* Player2.png */; };
 		75469D99219EF4D200E3AE72 /* Player1.png in Resources */ = {isa = PBXBuildFile; fileRef = 75469D98219EF4D200E3AE72 /* Player1.png */; };
 		75469D9A219EF4D200E3AE72 /* Player1.png in Resources */ = {isa = PBXBuildFile; fileRef = 75469D98219EF4D200E3AE72 /* Player1.png */; };
+		756566A221B44C6E00AE92A3 /* NetworkManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 757627CE218DCCEF00621ECF /* NetworkManager.cpp */; };
 		757627A1218CED2600621ECF /* MenuLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7576279F218CED2600621ECF /* MenuLayer.cpp */; };
 		757627AC218D044400621ECF /* MenuLabel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 757627AA218D044400621ECF /* MenuLabel.cpp */; };
 		757627B2218D2C6400621ECF /* MenuLabel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 757627AA218D044400621ECF /* MenuLabel.cpp */; };
@@ -656,6 +657,7 @@
 				75469D94219EED1A00E3AE72 /* GameController.cpp in Sources */,
 				759AD840219EFD2500769F07 /* GameLayer.cpp in Sources */,
 				758FCDA721B4453E007632E3 /* Transceiver.cpp in Sources */,
+				756566A221B44C6E00AE92A3 /* NetworkManager.cpp in Sources */,
 				759AD844219EFD2D00769F07 /* GameSceneViewController.cpp in Sources */,
 				750ACEBC21A04823005BA77C /* Edges.cpp in Sources */,
 				759AD848219F7AD600769F07 /* BallSprite.cpp in Sources */,
