@@ -23,7 +23,7 @@
  ****************************************************************************/
 
 #include "AppDelegate.h"
-#include "Classes/Menu/Controller/MenuViewController.hpp"
+#include "../Menu/Controller/MenuViewController.hpp"
 
 
 

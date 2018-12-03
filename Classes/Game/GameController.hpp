@@ -14,8 +14,11 @@
 #include "Sprites/BallSprite.hpp"
 #include "Sprites/Edges.hpp"
 #include "Shared.hpp"
+#include "../Menu/View/MenuLabel.hpp"
+
 
 class GameLayer;
+class MenuLabel;
 
 class GameController {
 private:
@@ -23,6 +26,10 @@ private:
     cocos2d::Sprite* player1;
     cocos2d::Sprite* player2;
     cocos2d::Sprite* ball;
+    int player1Score;
+    int player2Score;
+    cocos2d::Label* player1ScoreLabel;
+    cocos2d::Label* player2ScoreLabel;
     GameMode gameMode = twoPlayersOnDevice;
     Difficulty difficulty = hard;
     

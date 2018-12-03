@@ -2,6 +2,8 @@
 #define __GLOBAL_INCLUDED__
 
 #include <string>
+#include <thread>
+#include <exception>
 
 #include <boost/enable_shared_from_this.hpp>
 #include <boost/bind.hpp>
