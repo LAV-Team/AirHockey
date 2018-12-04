@@ -1,0 +1,155 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="win32">
+      <UniqueIdentifier>{84a8ebd7-7cf0-47f6-b75e-d441df67da40}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="resource">
+      <UniqueIdentifier>{715254bc-d70b-4ec5-bf29-467dd3ace079}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src">
+      <UniqueIdentifier>{bb6c862e-70e9-49d9-81b7-3829a6f50471}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\AppDelegate">
+      <UniqueIdentifier>{332453d1-965d-4c19-9685-d3b6f66b0864}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Game">
+      <UniqueIdentifier>{014273a9-d88a-4575-a9d1-4c87f3005186}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Menu">
+      <UniqueIdentifier>{ef3ab72e-2da2-443c-a363-7e95208aba0e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Network">
+      <UniqueIdentifier>{c3083eb6-c4f5-4966-94af-78030696c481}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Menu\Controller">
+      <UniqueIdentifier>{a7f0a1ec-a666-473e-a684-515694a5c979}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Menu\View">
+      <UniqueIdentifier>{d1cb5a8f-5060-4d13-aa57-9fcdfda4a20a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Game\Sprites">
+      <UniqueIdentifier>{725adedd-9450-4d2f-b106-46eb8e7a271a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="lib">
+      <UniqueIdentifier>{c4fa461d-0f0c-4097-8d02-ac30baae7cba}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="lib\Network">
+      <UniqueIdentifier>{2acba727-cb12-418a-8aa4-00e7091b0096}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="main.cpp">
+      <Filter>win32</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\AppDelegate\AppDelegate.cpp">
+      <Filter>src\AppDelegate</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Menu\Controller\MenuViewController.cpp">
+      <Filter>src\Menu\Controller</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Menu\View\MenuLabel.cpp">
+      <Filter>src\Menu\View</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Menu\View\MenuLayer.cpp">
+      <Filter>src\Menu\View</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Network\Network.cpp">
+      <Filter>src\Network</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Network\NetworkManager.cpp">
+      <Filter>src\Network</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Game\GameController.cpp">
+      <Filter>src\Game</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Game\Shared.cpp">
+      <Filter>src\Game</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Game\Sprites\BallSprite.cpp">
+      <Filter>src\Game\Sprites</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Game\Sprites\Edges.cpp">
+      <Filter>src\Game\Sprites</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Game\Sprites\PlayerSprite.cpp">
+      <Filter>src\Game\Sprites</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Menu\Controller\GameSceneViewController.cpp">
+      <Filter>src\Menu\Controller</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Menu\View\GameLayer.cpp">
+      <Filter>src\Menu\View</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\lib\Network\Receiver.cpp">
+      <Filter>lib\Network</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\lib\Network\Transceiver.cpp">
+      <Filter>lib\Network</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\lib\Network\Transmitter.cpp">
+      <Filter>lib\Network</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="main.h">
+      <Filter>win32</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\AppDelegate\AppDelegate.h">
+      <Filter>src\AppDelegate</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Menu\Controller\MenuViewController.hpp">
+      <Filter>src\Menu\Controller</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Menu\View\MenuLayer.hpp">
+      <Filter>src\Menu\View</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Menu\View\MenuLabel.hpp">
+      <Filter>src\Menu\View</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Network\Network.hpp">
+      <Filter>src\Network</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Network\NetworkManager.h">
+      <Filter>src\Network</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Game\GameController.hpp">
+      <Filter>src\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Game\Shared.hpp">
+      <Filter>src\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Game\Sprites\BallSprite.hpp">
+      <Filter>src\Game\Sprites</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Game\Sprites\Edges.hpp">
+      <Filter>src\Game\Sprites</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Game\Sprites\PlayerSprite.hpp">
+      <Filter>src\Game\Sprites</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Menu\Controller\GameSceneViewController.h">
+      <Filter>src\Menu\Controller</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Menu\View\GameLayer.h">
+      <Filter>src\Menu\View</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\lib\Network\General.hpp">
+      <Filter>lib\Network</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\lib\Network\Receiver.hpp">
+      <Filter>lib\Network</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\lib\Network\Transceiver.hpp">
+      <Filter>lib\Network</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\lib\Network\Transmitter.hpp">
+      <Filter>lib\Network</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="game.rc">
+      <Filter>resource</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+</Project>
