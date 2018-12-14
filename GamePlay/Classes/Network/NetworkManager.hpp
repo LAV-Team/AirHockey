@@ -43,23 +43,37 @@ namespace HockeyNet
 		, boost::noncopyable
 	{
 	public:
+		// Network manager creator
 		static NetworkManagerPtr Create();
 
+		// To connect to the server (you automatically become available to connect from others)
 		bool Connect(boost::asio::ip::tcp::endpoint const& ep, std::string username);
+		// Disconnect from server
 		void Disconnect();
 
+		// Get list of free (available to connect) users
 		std::list<std::string> GetFreeUsers();
+		// Wait random enemy
 		void WaitEnemy(std::string username = std::string{});
+		// Stop waiting random enemy
 		void CancelWaiting();
+		// Stop started session of game
 		void Cancel();
 
+		// Send striker data to enemy
 		void Send(StrikerInfo strikerInfo);
+		// Send puck data to enemy
 		void Send(PuckInfo puckInfo);
 
+		// Set listener on game start
 		void SetStartHandler(OnStartHandler onStartHandler);
+		// Set listener on game stop
 		void SetStopHandler(OnStopHandler onStopHandler);
+		// Set listener on striker data from enemy
 		void SetStrikerHandler(OnStrikerHandler onStrikerHandler);
+		// Set listener on puck data from enemy
 		void SetPuckHandler(OnPuckHandler onPuckHandler);
+		// Set listener on server disconnect
 		void SetCloseHandler(OnCloseHandler onCloseHandler);
 
 	private:
