@@ -110,7 +110,7 @@
     <ClInclude Include="..\Classes\Network\Network.hpp">
       <Filter>src\Network</Filter>
     </ClInclude>
-    <ClInclude Include="..\Classes\Network\NetworkManager.h">
+    <ClInclude Include="..\Classes\Network\NetworkManager.hpp">
       <Filter>src\Network</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\Game\GameController.hpp">

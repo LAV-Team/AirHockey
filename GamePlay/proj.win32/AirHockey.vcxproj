@@ -189,7 +189,7 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y
     <ClInclude Include="..\Classes\Menu\View\GameLayer.h" />
     <ClInclude Include="..\Classes\Menu\View\MenuLabel.hpp" />
     <ClInclude Include="..\Classes\Menu\View\MenuLayer.hpp" />
-    <ClInclude Include="..\Classes\Network\NetworkManager.h" />
+    <ClInclude Include="..\Classes\Network\NetworkManager.hpp" />
     <ClInclude Include="..\Classes\Network\Network.hpp" />
     <ClInclude Include="main.h" />
   </ItemGroup>

@@ -27,18 +27,27 @@ namespace HockeyNet
 	typedef boost::function<void(std::string const&)> OnAnswerHandler;
 	typedef boost::function<void()> OnCloseHandler;
 
+	// Answers from server
+	static std::string const OK_ANSWER{ "OK" };
 	static std::string const NO_SESSION{ "SN" };
 	static std::string const UNKNOWN_SESSION{ "SU" };
 	static std::string const SESSION_BEGIN{ "SB" };
 	static std::string const SESSION_END{ "SE" };
+	static std::string const USERNAMES_LIST{ "UL" };
 
+	// Commands to server
+	static std::string const START_SESSION{ "SS" };
 	static std::string const WAIT_SESSION{ "SW" };
 	static std::string const STOP_WAITING_SESSION{ "SF" };
 	static std::string const STOP_SESSION{ "ST" };
+	static std::string const SET_USERNAME{ "US" };
+	static std::string const GET_USERNAMES{ "UG" };
 
+	// Commands separators
 	static char const COMMAND_END{ '\x01' };
 	static char const TRANSMITTER_END{ '\x02' };
 	static char const TRANSCEIVER_END{ '\x03' };
+	static char const USERNAMES_SEPARATOR{ '\x04' };
 
 	static size_t const RECEIVER_BUFFER_LENGTH{ 256U };
 

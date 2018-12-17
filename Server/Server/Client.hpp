@@ -23,9 +23,11 @@ namespace HockeyNet
 		std::string GetSessionId() const;
 		std::string GetShortSessionId() const;
 		ClientPtr GetAnotherClient() const;
+		std::string GetUsername() const;
 
 		void SetSessionId(std::string sessionId);
 		void SetAnotherClient(ClientPtr anotherClient);
+		void SetUsername(std::string username);
 
 		void ClearSessionId();
 		void ClearAnotherClient();
@@ -41,6 +43,7 @@ namespace HockeyNet
 		std::string sessionId_;
 		std::string shortSessionId_;
 		ClientPtr anotherClient_;
+		std::string username_;
 
 		Client(boost::asio::io_service& service);
 	};

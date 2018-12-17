@@ -34,9 +34,15 @@ namespace HockeyNet
 
 		Server(unsigned short port);
 
-		std::string GenerateSessionId_();
-		void MakeSessions_();
 		void CreateTransceiver_();
+
+		std::string GenerateSessionId_();
+		void StartSession_(ClientPtr first, ClientPtr second);
+		bool StartSession_();
+		bool StartSession_(ClientPtr client, std::string otherUsername);
+		void StartWaiting_(ClientPtr client);
+		void StopWaiting_(ClientPtr client);
+		void StopSession_(ClientPtr client);
 
 		void AcceptHandler_(ClientPtr client, boost::system::error_code const& error);
 		void ErrorHandler_(ClientPtr client, boost::system::error_code const& error);

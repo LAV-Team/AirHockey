@@ -47,6 +47,15 @@ void HockeyNet::Server::Stop()
 	serviceThread_.join();
 }
 
+void HockeyNet::Server::CreateTransceiver_()
+{
+	ClientPtr client{ Client::Create(service_) };
+	client->SetErrorHandler(BIND(ErrorHandler_, client, _1));
+	client->SetAnswerHandler(BIND(AnswerHandler_, client, _1));
+	client->SetCloseHandler(BIND(CloseHandler_, client));
+	acceptor_.async_accept(client->Sock(), BIND(AcceptHandler_, client, _1));
+}
+
 std::string HockeyNet::Server::GenerateSessionId_()
 {
 	std::string result{};
@@ -70,36 +79,90 @@ std::string HockeyNet::Server::GenerateSessionId_()
 	return result;
 }
 
-void HockeyNet::Server::MakeSessions_()
+void HockeyNet::Server::StartSession_(ClientPtr first, ClientPtr second)
 {
-	while (waitingClients_.size() > 1) {
-		std::string sessionId{ GenerateSessionId_() };
-		auto first{ waitingClients_.front() };
-		waitingClients_.pop_front();
-		auto second{ waitingClients_.front() };
-		waitingClients_.pop_front();
-		
-		first->SetSessionId(sessionId);
-		first->SetAnotherClient(second);
-		second->SetSessionId(sessionId);
-		second->SetAnotherClient(first);
+	std::string sessionId{ GenerateSessionId_() };
 
-		first->Send(SESSION_BEGIN);
-		second->Send(SESSION_BEGIN);
-		std::cout << "Session " << first->GetShortSessionId() << " started." << std::endl;
+	first->SetSessionId(sessionId);
+	first->SetAnotherClient(second);
+	second->SetSessionId(sessionId);
+	second->SetAnotherClient(first);
 
-		busyClients_.push_back(first);
-		busyClients_.push_back(second);
+	first->Send(SESSION_BEGIN);
+	second->Send(SESSION_BEGIN);
+	std::cout << "Session " << first->GetShortSessionId() << " started." << std::endl;
+
+	busyClients_.push_back(first);
+	busyClients_.push_back(second);
+}
+
+bool HockeyNet::Server::StartSession_()
+{
+	// Get first two clients
+	if (waitingClients_.size() < 2) {
+		return false;
+	}
+	auto first{ waitingClients_.front() };
+	waitingClients_.pop_front();
+	auto second{ waitingClients_.front() };	
+	waitingClients_.pop_front();
+
+	// Start session
+	StartSession_(first, second);
+	return true;
+}
+
+bool HockeyNet::Server::StartSession_(ClientPtr client, std::string otherUsername)
+{
+	// Find users
+	auto firstIt{ std::find(freeClients_.begin(), freeClients_.end(), client) };
+	if (firstIt == freeClients_.end()) {
+		return false;
+	}
+	auto secondIt{ std::find_if(freeClients_.begin(), freeClients_.end(),
+		[&otherUsername](ClientPtr current) { return current->GetUsername() == otherUsername; }
+	) };
+	if (secondIt == freeClients_.end()) {
+		return false;
+	}
+	
+	// Get clients
+	auto first{ *firstIt };
+	auto second{ *secondIt };
+	freeClients_.erase(firstIt);
+	freeClients_.erase(secondIt);
+
+	// Start session
+	StartSession_(first, second);
+	return true;
+}
+
+void HockeyNet::Server::StartWaiting_(ClientPtr client)
+{
+	auto it{ std::find(freeClients_.begin(), freeClients_.end(), client) };
+	if (it != freeClients_.end()) {
+		freeClients_.erase(it);
+		waitingClients_.push_back(client);
+		StartSession_();
 	}
 }
 
-void HockeyNet::Server::CreateTransceiver_()
+void HockeyNet::Server::StopWaiting_(ClientPtr client)
 {
-	ClientPtr client{ Client::Create(service_) };
-	client->SetErrorHandler(BIND(ErrorHandler_, client, _1));
-	client->SetAnswerHandler(BIND(AnswerHandler_, client, _1));
-	client->SetCloseHandler(BIND(CloseHandler_, client));
-	acceptor_.async_accept(client->Sock(), BIND(AcceptHandler_, client, _1));
+	auto it{ std::find(waitingClients_.begin(), waitingClients_.end(), client) };
+	if (it != waitingClients_.end()) {
+		waitingClients_.erase(it);
+		freeClients_.push_back(client);
+	}
+}
+
+void HockeyNet::Server::StopSession_(ClientPtr client)
+{
+	client->Send(SESSION_END);
+	client->ClearSessionId();
+	client->ClearAnotherClient();
+	busyClients_.remove(client);
+	freeClients_.push_back(client);
 }
 
 void HockeyNet::Server::AcceptHandler_(ClientPtr client, boost::system::error_code const& error)
@@ -117,24 +180,38 @@ void HockeyNet::Server::ErrorHandler_(ClientPtr client, boost::system::error_cod
 
 void HockeyNet::Server::AnswerHandler_(ClientPtr client, std::string const& answer)
 {
+	// Set username
+	if (answer.find(SET_USERNAME) == 0U) {
+		client->SetUsername(std::string{ answer.begin() + SET_USERNAME.size(), answer.end() });
+		client->Send(OK_ANSWER);
+		return;
+	}
+	// Get free users
+	else if (answer == GET_USERNAMES) {
+		std::string result{ USERNAMES_LIST };
+		for (auto user : freeClients_) {
+			result += USERNAMES_SEPARATOR + user->GetUsername();
+		}
+		client->Send(result);
+		return;
+	}
+
 	// No another client
 	if (client->GetSessionId().empty() || !client->GetAnotherClient()) {
+		// Start session with username
+		if (answer.find(START_SESSION) == 0U) {
+			std::string username{ answer.begin() + START_SESSION.size(), answer.end() };
+			StartSession_(client, username);
+		}
 		// From free to waiting
-		if (answer == WAIT_SESSION) {
-			auto it{ std::find(freeClients_.begin(), freeClients_.end(), client) };
-			if (it != freeClients_.end()) {
-				freeClients_.erase(it);
-				waitingClients_.push_back(client);
-				MakeSessions_();
-			}
+		else if (answer == WAIT_SESSION) {
+			StartWaiting_(client);
+			client->Send(OK_ANSWER);
 		}
 		// From waiting to free
 		else if (answer == STOP_WAITING_SESSION) {
-			auto it{ std::find(waitingClients_.begin(), waitingClients_.end(), client) };
-			if (it != waitingClients_.end()) {
-				waitingClients_.erase(it);
-				freeClients_.push_back(client);
-			}
+			StopWaiting_(client);
+			client->Send(OK_ANSWER);
 		}
 		// Unknown answer from not busy user
 		else {
@@ -154,24 +231,14 @@ void HockeyNet::Server::AnswerHandler_(ClientPtr client, std::string const& answ
 	// Stop session
 	if (answer == STOP_SESSION) {
 		std::cout << "Session " << client->GetShortSessionId() << " stopped." << std::endl;
-
-		client->GetAnotherClient()->Send(SESSION_END);
-		client->GetAnotherClient()->ClearSessionId();
-		client->GetAnotherClient()->ClearAnotherClient();
-		busyClients_.remove(client->GetAnotherClient());
-		freeClients_.push_back(client->GetAnotherClient());
-
-		client->Send(SESSION_END);
-		client->ClearSessionId();
-		client->ClearAnotherClient();
-		busyClients_.remove(client);
-		freeClients_.push_back(client);
+		StopSession_(client->GetAnotherClient());
+		StopSession_(client);
+		return;
 	}
+
 	// Transceive message
-	else {
-		std::cout << client->GetShortSessionId() << ": client sent \"" << answer << "\"" << std::endl;
-		client->GetAnotherClient()->Send(answer);
-	}
+	std::cout << client->GetShortSessionId() << ": client sent \"" << answer << "\"" << std::endl;
+	client->GetAnotherClient()->Send(answer);
 }
 
 void HockeyNet::Server::CloseHandler_(ClientPtr client)
@@ -183,20 +250,15 @@ void HockeyNet::Server::CloseHandler_(ClientPtr client)
 		waitingClients_.remove(client);
 		return;
 	}
-
 	busyClients_.remove(client);
+
 	// Incorrect session id
 	if (client->GetSessionId() != client->GetAnotherClient()->GetSessionId()) {
 		std::cout << "Client with unknown session id was disconnected!" << std::endl;
+		return;
 	}
+	
 	// Kick another user from busy to free
-	else {
-		std::cout << "Session " << client->GetShortSessionId() << " stopped." << std::endl;
-		client->GetAnotherClient()->Send(SESSION_END);
-		client->GetAnotherClient()->ClearSessionId();
-		client->GetAnotherClient()->ClearAnotherClient();
-
-		busyClients_.remove(client->GetAnotherClient());
-		freeClients_.push_back(client->GetAnotherClient());
-	}
+	std::cout << "Session " << client->GetShortSessionId() << " stopped." << std::endl;
+	StopSession_(client->GetAnotherClient());
 }

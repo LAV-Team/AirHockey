@@ -1,8 +1,14 @@
-#include "NetworkManager.h"
+#include "NetworkManager.hpp"
 
 HockeyNet::NetworkException::NetworkException(std::string const & message)
-	: exception{  }
+	: exception{}
+	, message_{ message }
 {}
+
+char const* HockeyNet::NetworkException::what() const
+{
+	return message_.c_str();
+}
 
 HockeyNet::NetworkManagerPtr HockeyNet::NetworkManager::Create()
 {
@@ -14,11 +20,17 @@ HockeyNet::NetworkManagerPtr HockeyNet::NetworkManager::Create()
 
 HockeyNet::NetworkManager::NetworkManager()
 	: network_{ Network::Create() }
+	, onStartHandler_{}
+	, onStopHandler_{}
+	, onStrikerHandler_{}
+	, onPuckHandler_{}
+	, freeUsers_{}
 {}
 
 bool HockeyNet::NetworkManager::Connect(boost::asio::ip::tcp::endpoint const& ep, std::string username)
 {
 	return network_->Connect(ep);
+	network_->Send(SET_USERNAME + username);
 }
 
 void HockeyNet::NetworkManager::Disconnect()
@@ -26,12 +38,18 @@ void HockeyNet::NetworkManager::Disconnect()
 	network_->Disconnect();
 }
 
-std::vector<std::string> HockeyNet::NetworkManager::GetFreeUsers()
+std::list<std::string> HockeyNet::NetworkManager::GetFreeUsers()
 {
-	std::vector<std::string> result{};
-	std::string base{ "Example_" };
-	for (size_t i{ 0U }; i < 30; ++i) {
-		result.push_back(base + std::to_string(i));
+	std::unique_lock<std::mutex> lock{ std::mutex{} };
+	freeUsersWaiting_.wait(lock);
+
+	std::list<std::string> result{};
+	size_t last{ 0U };
+	while (last < freeUsers_.size() && freeUsers_[last] == USERNAMES_SEPARATOR) {
+		++last;
+		size_t newLast{ freeUsers_.find(USERNAMES_SEPARATOR, last) };
+		result.push_back(freeUsers_.substr(last, newLast - last));
+		last = newLast;
 	}
 	return result;
 }
@@ -110,6 +128,10 @@ void HockeyNet::NetworkManager::OnAnswer_(std::string const& answer)
 	}
 	else if (command == PUCK_DATA) {
 		onPuckHandler_(*(PuckInfo*)(data.data()));
+	}
+	else if (command == USERNAMES_LIST) {
+		freeUsers_ = data;
+		freeUsersWaiting_.notify_one();
 	}
 	else if (command == SESSION_BEGIN) {
 		if (onStartHandler_) {

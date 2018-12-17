@@ -70,6 +70,7 @@ list(APPEND GAME_SOURCE
         Classes/Menu/View/MenuLabel.cpp
         Classes/Menu/View/MenuLayer.cpp
         Classes/Menu/View/GameLayer.cpp
+		Classes/Network/NetworkManager.cpp
      )
 list(APPEND GAME_HEADER
         Classes/AppDelegate/AppDelegate.h
@@ -83,6 +84,7 @@ list(APPEND GAME_HEADER
         Classes/Menu/View/MenuLabel.hpp
         Classes/Menu/View/MenuLayer.hpp
         Classes/Menu/View/GameLayer.h
+		Classes/Network/NetworkManager.hpp
      )
 
 if(ANDROID)

@@ -10,6 +10,8 @@ HockeyNet::Client::Client(boost::asio::io_service& service)
 	: transceiver_{ Transceiver::Create(service) }
 	, sessionId_{}
 	, shortSessionId_{}
+	, anotherClient_{}
+	, username_{}
 {}
 
 void HockeyNet::Client::SetErrorHandler(OnErrorHandler onErrorHandler)
@@ -47,6 +49,11 @@ HockeyNet::ClientPtr HockeyNet::Client::GetAnotherClient() const
 	return anotherClient_;
 }
 
+std::string HockeyNet::Client::GetUsername() const
+{
+	return username_;
+}
+
 void HockeyNet::Client::SetSessionId(std::string sessionId)
 {
 	sessionId_ = sessionId;
@@ -56,6 +63,11 @@ void HockeyNet::Client::SetSessionId(std::string sessionId)
 void HockeyNet::Client::SetAnotherClient(ClientPtr anotherClient)
 {
 	anotherClient_ = anotherClient;
+}
+
+void HockeyNet::Client::SetUsername(std::string username)
+{
+	username_ = username;
 }
 
 void HockeyNet::Client::ClearSessionId()
